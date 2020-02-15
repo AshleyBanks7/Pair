@@ -16,7 +16,6 @@
 		97B90B4523F6FE890012318D /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B90B4423F6FE890012318D /* PersonController.swift */; };
 		97B90B4723F700550012318D /* PersonListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B90B4623F700550012318D /* PersonListTableViewController.swift */; };
 		97B90B4923F702E20012318D /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B90B4823F702E20012318D /* PersonDetailViewController.swift */; };
-		97B90B4C23F70FC60012318D /* RandomArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B90B4B23F70FC60012318D /* RandomArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		97B90B4423F6FE890012318D /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		97B90B4623F700550012318D /* PersonListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListTableViewController.swift; sourceTree = "<group>"; };
 		97B90B4823F702E20012318D /* PersonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
-		97B90B4B23F70FC60012318D /* RandomArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +62,6 @@
 		97B90B2523F6FCBA0012318D /* Pair */ = {
 			isa = PBXGroup;
 			children = (
-				97B90B4A23F70FB30012318D /* Helper and Extensions */,
 				97B90B4123F6FCF80012318D /* Models */,
 				97B90B3E23F6FCE20012318D /* Controllers */,
 				97B90B3B23F6FCCD0012318D /* Views */,
@@ -143,14 +140,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		97B90B4A23F70FB30012318D /* Helper and Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				97B90B4B23F70FC60012318D /* RandomArray.swift */,
-			);
-			path = "Helper and Extensions";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,7 +214,6 @@
 				97B90B4523F6FE890012318D /* PersonController.swift in Sources */,
 				97B90B4723F700550012318D /* PersonListTableViewController.swift in Sources */,
 				97B90B4923F702E20012318D /* PersonDetailViewController.swift in Sources */,
-				97B90B4C23F70FC60012318D /* RandomArray.swift in Sources */,
 				97B90B4323F6FE070012318D /* Person.swift in Sources */,
 				97B90B2723F6FCBA0012318D /* AppDelegate.swift in Sources */,
 				97B90B2923F6FCBA0012318D /* SceneDelegate.swift in Sources */,

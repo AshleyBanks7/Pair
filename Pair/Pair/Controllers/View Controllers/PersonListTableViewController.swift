@@ -19,7 +19,7 @@ class PersonListTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    //var sections: [[Int]] = [[]]
+    var pairs: [[Person]] = []
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,66 +29,52 @@ class PersonListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        random()
         tableView.reloadData()
     }
     
     //MARK: - Actions
     @IBAction func refreshButtonTapped(_ sender: Any) {
         isRandom = true
-        shuffle()
+        random()
         tableView.reloadData()
         print("it worked")
     }
     
     //MARK: - Class Methods
-    func shuffle() {
-        PersonController.sharedInstance.persons.shuffle()
-    }
-    
     func random() {
         
-        //        var randomArray: [Person] = []
-        //
-        //        guard let random = PersonController.sharedInstance.persons.randomElement() else {return}
-        //
-        //        if random == random {
-        //            return
-        //        }
-        //
-        //        randomArray.append(random)
+        var random2DArray: [[Person]] = []
+        var newArray: [Person] = []
         
+        for person in PersonController.sharedInstance.persons.shuffled() {
+            
+            if newArray.count < 2 {
+                newArray.append(person)
+            } else if newArray.count == 2 {
+                random2DArray.append(newArray)
+                newArray = []
+                newArray.append(person)
+            }
+        }
         
-        //        var random2DArray: [[Person]] = [[]]
-        //        var randomArray: [Person] = []
-        //        var randomArrayAddition = 1
-        //
-        //        for person in PersonController.sharedInstance.persons {
-        //            var currentArray = randomArray
-        //            if currentArray.count > 2 {
-        //                currentArray.append(person)
-        //            } else {
-        //                random2DArray.append(currentArray)
-        //                var newArray = "\(currentArray)\(randomArrayAddition)"
-        //                randomArrayAddition += 1
-        //            }
-        //        }
+        if newArray.count > 0 {
+            random2DArray.append(newArray)
+        }
+        
+        pairs = random2DArray
     }
     
     //MARK: - Table view data source methods
-    //    override func numberOfSections(in tableView: UITableView) -> Int {
-    //
-    //        if PersonController.sharedInstance.persons.count < 2 {
-    //            return PersonController.sharedInstance.persons.count
-    //        }
-    //
-    //        return PersonController.sharedInstance.persons.count / 2
-    //
-    //    }
+        override func numberOfSections(in tableView: UITableView) -> Int {
+
+            return pairs.count
+        }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if isRandom == true {
-            return "Group \(section)"
+            return "Group \(section + 1)"
         } else {
             return nil
         }
@@ -96,18 +82,13 @@ class PersonListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //        if PersonController.sharedInstance.persons.count > 2 {
-        //
-        //            return 2
-        //        }
-        
-        return PersonController.sharedInstance.persons.count
+        return pairs[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
         
-        let person = PersonController.sharedInstance.persons[indexPath.row]
+        let person = pairs[indexPath.section][indexPath.row]
         
         cell.textLabel?.text = person.name
         
@@ -117,11 +98,12 @@ class PersonListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let personToDelete = PersonController.sharedInstance.persons[indexPath.row]
+            let personToDelete = pairs[indexPath.section][indexPath.row]
             
             PersonController.sharedInstance.deletePerson(person: personToDelete)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            random()
+            tableView.reloadData()
         }
     }
 }//End of class
